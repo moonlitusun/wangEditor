@@ -294,6 +294,8 @@ export const withContent = <T extends Editor>(editor: T) => {
     let insertedElemNum = 0 // 记录插入 elem 的数量 ( textNode 不算 )
     domNodes.forEach(n => {
       const { nodeType, nodeName, textContent = '' } = n
+      console.log(n, '<-- 1n');
+      
 
       // ------ Text node ------
       if (nodeType === NodeType.TEXT_NODE) {
@@ -319,6 +321,8 @@ export const withContent = <T extends Editor>(editor: T) => {
         isParseMatch = true
       } else {
         for (let selector in PARSE_ELEM_HTML_CONF) {
+          console.log(el, '1');
+          
           if (el.matches(selector)) {
             // 普通 elem，如 <p> <a> 等（非 text elem）
             isParseMatch = true
@@ -333,6 +337,8 @@ export const withContent = <T extends Editor>(editor: T) => {
         const $el = $(el)
         const parsedRes = parseElemHtml($el, e) as Element
 
+        console.log(parsedRes, 'parseElemHtml2');
+        
         if (Array.isArray(parsedRes)) {
           parsedRes.forEach(el => insertElemToEditor(e, el))
           insertedElemNum++ // 记录数量
