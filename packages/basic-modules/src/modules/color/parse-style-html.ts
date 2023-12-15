@@ -9,7 +9,6 @@ import { ColorText } from './custom-types'
 import $, { DOMElement, getStyleValue } from '../../utils/dom'
 
 export function parseStyleHtml(text: DOMElement, node: Descendant, editor: IDomEditor): Descendant {
-  
   const $text = $(text)
   if (!Text.isText(node)) return node
 

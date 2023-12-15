@@ -35,10 +35,14 @@ function parseTextElemHtml($text: Dom7Array, editor: IDomEditor): Text {
   // 生成 text node
   let textNode = { text }
 
+  console.log(text, 'text 43232')
+
   // 处理 style
   PARSE_STYLE_HTML_FN_LIST.forEach(fn => {
     textNode = fn($text[0], textNode, editor) as Text
   })
+
+  console.log(textNode, '<-- textNode 43232')
 
   return textNode
 }

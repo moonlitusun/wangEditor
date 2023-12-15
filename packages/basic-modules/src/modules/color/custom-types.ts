@@ -9,5 +9,5 @@ export type ColorText = {
   text: string
   color?: string
   bgColor?: string
-  fontSize?: string;
+  fontSize?: string
 }

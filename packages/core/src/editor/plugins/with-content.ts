@@ -257,7 +257,48 @@ export const withContent = <T extends Editor>(editor: T) => {
     // ------------- 把 html 转换为 DOM nodes -------------
     const div = document.createElement('div')
     div.innerHTML = html
+    console.log(div, '<>-- div')
+
     let domNodes = Array.from(div.childNodes)
+    // let rawDomNodes = Array.from(div.childNodes)
+    // let domNodes: any[] = []
+    // rawDomNodes.forEach((item, index) => {
+    //   const { nodeName } = item
+    //   console.log(nodeName.toLowerCase())
+
+    //   if (nodeName.toLowerCase() === 'span') {
+    //     const childs = Array.from(item.childNodes)
+
+    //     if (childs.length < 2) {
+    //       domNodes.push(item)
+    //       return
+    //     }
+
+    //     childs.forEach(child => {
+    //       const { nodeType } = child
+    //       // console.log(child, 'child domNodes')
+    //       if (nodeType === NodeType.TEXT_NODE) {
+    //         const father = item.cloneNode()
+
+    //         father.appendChild(child)
+    //         domNodes.push(father)
+    //         return
+    //       }
+
+    //       domNodes.push(child)
+    //     })
+    //   } else {
+    //     domNodes.push(item)
+    //   }
+
+    //   // const childs = Array.from(item.childNodes)
+
+    //   //   console.log(childs, item, item.childNodes, 'childs domNodes')
+
+    //   // domNodes.push(...childs)
+    //   // domNodes.splice(index, 1, ...Array.from(childs))
+    // })
+    // console.log(domNodes, 'domNodes')
 
     // 过滤一下，只保留 elem 和 text ，并却掉一些无用标签（如 style script 等）
     domNodes = domNodes.filter(n => {
@@ -294,8 +335,7 @@ export const withContent = <T extends Editor>(editor: T) => {
     let insertedElemNum = 0 // 记录插入 elem 的数量 ( textNode 不算 )
     domNodes.forEach(n => {
       const { nodeType, nodeName, textContent = '' } = n
-      console.log(n, '<-- 1n');
-      
+      console.log(n, nodeType, nodeName, textContent, '<-- 1n')
 
       // ------ Text node ------
       if (nodeType === NodeType.TEXT_NODE) {
@@ -321,8 +361,8 @@ export const withContent = <T extends Editor>(editor: T) => {
         isParseMatch = true
       } else {
         for (let selector in PARSE_ELEM_HTML_CONF) {
-          console.log(el, '1');
-          
+          console.log(el, '1')
+
           if (el.matches(selector)) {
             // 普通 elem，如 <p> <a> 等（非 text elem）
             isParseMatch = true
@@ -337,8 +377,8 @@ export const withContent = <T extends Editor>(editor: T) => {
         const $el = $(el)
         const parsedRes = parseElemHtml($el, e) as Element
 
-        console.log(parsedRes, 'parseElemHtml2');
-        
+        console.log(parsedRes, 'parseElemHtml2')
+
         if (Array.isArray(parsedRes)) {
           parsedRes.forEach(el => insertElemToEditor(e, el))
           insertedElemNum++ // 记录数量
