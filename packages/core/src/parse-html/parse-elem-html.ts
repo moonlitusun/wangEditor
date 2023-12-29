@@ -18,8 +18,6 @@ import { PRE_PARSE_HTML_CONF_LIST, TEXT_TAGS } from '../index'
  * @returns slate Descendant
  */
 function parseElemHtml($elem: Dom7Array, editor: IDomEditor): Descendant | Descendant[] {
-  console.log($elem, '43232')
-
   // pre-parse
   PRE_PARSE_HTML_CONF_LIST.forEach(conf => {
     const { selector, preParseHtml } = conf
@@ -27,8 +25,6 @@ function parseElemHtml($elem: Dom7Array, editor: IDomEditor): Descendant | Desce
       $elem = $(preParseHtml($elem[0]))
     }
   })
-
-  console.log($elem, '$elem 43232')
 
   const tagName = getTagName($elem)
 
