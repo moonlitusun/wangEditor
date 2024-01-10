@@ -321,8 +321,6 @@ export const withContent = <T extends Editor>(editor: T) => {
         isParseMatch = true
       } else {
         for (let selector in PARSE_ELEM_HTML_CONF) {
-          console.log(el, '1')
-
           if (el.matches(selector)) {
             // 普通 elem，如 <p> <a> 等（非 text elem）
             isParseMatch = true

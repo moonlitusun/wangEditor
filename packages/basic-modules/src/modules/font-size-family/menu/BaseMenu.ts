@@ -50,6 +50,9 @@ abstract class BaseMenu implements ISelectMenu {
 
   exec(editor: IDomEditor, value: string | boolean) {
     const mark = this.mark
+
+    console.log(mark, value, 'mark12')
+
     if (value) {
       editor.addMark(mark, value)
     } else {

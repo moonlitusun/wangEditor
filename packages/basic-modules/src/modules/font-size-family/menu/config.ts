@@ -7,6 +7,7 @@ export function genFontSizeConfig() {
   const fontSizeList: Array<string | { name: string; value: string }> = [
     // 元素支持两种形式：1. 字符串；2. { name: 'xxx', value: 'xxx' }
     '12px',
+    '55px',
     { name: '13px', value: '13px' },
     '14px',
     '15px',
